@@ -1,0 +1,110 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Microsoft Fonts on Pillar 64</title><meta name="description" content="Pillar 64: a calm desktop with its own apps. A New Foundation."><link rel="icon" href="logo.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap"><link rel="stylesheet" href="style.css"></head><body>
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="index.html"><img src="logo.svg" alt="" width="36" height="36"><span>Pillar 64</span></a>
+  <nav class="main" aria-label="Main"><a href="index.html">Home</a><a href="apps.html">Apps</a><a href="install.html">Install</a><a href="fonts.html" aria-current="page">Microsoft fonts</a><a href="faq.html">FAQ</a><a class="cta" href="download.html">Download</a></nav>
+</div></header>
+<main>
+
+<section><div class="wrap stack-lg">
+  <div>
+    <p class="eyebrow">Fonts</p>
+    <h1>Microsoft fonts</h1>
+    <p class="lede" style="margin-top:16px">Pillar installs Microsoft's free fonts by itself, once, the first time the installed system starts with an internet connection.</p>
+  </div>
+
+  <div class="callout">
+    <h3>The short version</h3>
+    <p><strong>After you install Pillar and restart, connect to the internet and wait a few minutes.</strong> That is all. The fonts arrive in the background, with no window and no menu entry. If you are offline, Pillar tries again at every start until it succeeds.</p>
+  </div>
+
+  <div>
+    <h2>Why they are not on the disc</h2>
+    <div class="stack" style="margin-top:16px">
+      <p>Microsoft's fonts (Arial, Times New Roman, Verdana and the others) are free to download, but their licence does not allow them to be copied onto another company's disc. So the Pillar ISO cannot include them. Pillar fetches them after setup instead, straight from the internet.</p>
+    </div>
+  </div>
+
+  <div>
+    <h2>What you have from the first minute</h2>
+    <p style="margin-top:16px">The disc includes look-alike fonts designed to take exactly the same space as the Microsoft ones. A document keeps the same line breaks and page breaks, even before the real fonts arrive.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Microsoft font</th><th>Pillar look-alike</th></tr></thead>
+      <tbody>
+        <tr><td>Calibri</td><td>Carlito</td></tr>
+        <tr><td>Cambria</td><td>Caladea</td></tr>
+        <tr><td>Arial</td><td>Liberation Sans</td></tr>
+        <tr><td>Times New Roman</td><td>Liberation Serif</td></tr>
+        <tr><td>Courier New</td><td>Liberation Mono</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div>
+    <h2>What happens after you install</h2>
+    <ol class="timeline">
+      <li><strong>You restart into the installed system</strong><span>Nothing visible happens. Pillar checks whether the fonts have already been installed.</span></li>
+      <li><strong>The computer is online</strong><span>A small background task starts, accepts Microsoft's font licence for you, and downloads the package. This takes a few minutes, depending on your connection.</span></li>
+      <li><strong>The fonts are installed</strong><span>Pillar refreshes the font list and records that the job is done. It never runs again.</span></li>
+      <li><strong>The next integrity check lists the new fonts</strong><span>At the next start-up the Pillar system integrity check may report the new font files as changes. That is expected.</span></li>
+      <li><strong>Restart your apps</strong><span>Close and reopen Pillar Word and any other open program to see the new fonts in their lists.</span></li>
+    </ol>
+    <div class="callout">
+      <h3>If the computer is offline</h3>
+      <p>Nothing breaks. The task stops quietly and tries again at the next start. It keeps trying, once per start, until a connection is there and the download succeeds.</p>
+    </div>
+  </div>
+
+  <div>
+    <h2>Which fonts you get</h2>
+    <p style="margin-top:16px">The package installs these Microsoft web fonts: Andale Mono, Arial, Arial Black, Comic Sans MS, Courier New, Georgia, Impact, Times New Roman, Trebuchet MS, Verdana and Webdings.</p>
+    <p>It does not include Calibri, Cambria, Consolas or Segoe UI. Microsoft does not offer those for free download. Pillar uses the look-alikes above for Calibri and Cambria.</p>
+  </div>
+
+  <div>
+    <h2>Only on the installed system</h2>
+    <p style="margin-top:16px">This happens on a computer where Pillar has been installed. When you run Pillar from the USB drive without installing, the live desktop forgets everything when you shut down, so nothing is downloaded there.</p>
+  </div>
+
+  <div>
+    <h2>The integrity check will notice them</h2>
+    <div class="stack" style="margin-top:16px">
+      <p>Pillar checks its own system files each time the installed system starts, and shows the result on the start-up screen. The first start after installation sets the starting point. The fonts arrive after that, so the next check can list the new font files as changes.</p>
+      <p><strong>This is expected.</strong> It is the check doing its job. It does not mean anything is damaged or unwanted. If a check ever lists files that are not fonts, take that one seriously.</p>
+      <p>To read the latest result yourself:</p>
+      <div class="cmd"><code>cat /var/log/pillar-integrity.log</code><button class="copy" type="button" data-copy="cat /var/log/pillar-integrity.log">Copy</button></div>
+    </div>
+  </div>
+
+  <div>
+    <h2>Check that it worked</h2>
+    <div class="stack" style="margin-top:16px">
+      <p>Open a terminal and list the font folder. If you see files like Arial and Verdana, it worked.</p>
+      <div class="cmd"><code>ls /usr/share/fonts/truetype/msttcorefonts</code><button class="copy" type="button" data-copy="ls /usr/share/fonts/truetype/msttcorefonts">Copy</button></div>
+      <p>To see the job itself:</p>
+      <div class="cmd"><code>systemctl status pillar-ms-fonts.service</code><button class="copy" type="button" data-copy="systemctl status pillar-ms-fonts.service">Copy</button></div>
+      <p>If it has not finished, the line to read the details is:</p>
+      <div class="cmd"><code>journalctl -u pillar-ms-fonts.service</code><button class="copy" type="button" data-copy="journalctl -u pillar-ms-fonts.service">Copy</button></div>
+    </div>
+  </div>
+
+  <div>
+    <h2>A note on the licence and on privacy</h2>
+    <div class="stack" style="margin-top:16px">
+      <p>The font package comes with a Microsoft licence. Pillar accepts it on your behalf so that the install can run without a window. By installing Pillar and connecting to the internet you are agreeing to that licence for these fonts.</p>
+      <p>This download is the one thing Pillar fetches on its own. It sends no usage data, and Pillar does not install or update anything else without you.</p>
+      <p><strong>Prefer not to have the fonts?</strong> Turn the task off before you first connect, and Pillar will keep using the look-alike fonts:</p>
+      <div class="cmd"><code>sudo systemctl disable --now pillar-ms-fonts.service</code><button class="copy" type="button" data-copy="sudo systemctl disable --now pillar-ms-fonts.service">Copy</button></div>
+      <p>To install them later, run this and the task does the rest:</p>
+      <div class="cmd"><code>sudo systemctl start pillar-ms-fonts.service</code><button class="copy" type="button" data-copy="sudo systemctl start pillar-ms-fonts.service">Copy</button></div>
+    </div>
+  </div>
+</div></section>
+
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="index.html">Home</a><a href="apps.html">Apps</a><a href="install.html">Install</a><a href="fonts.html">Microsoft fonts</a><a href="faq.html">FAQ</a><a href="download.html">Download</a><a data-repo href="#">Project on GitHub</a></div>
+  <p><strong>Pillar 64 1.0</strong>. A New Foundation.</p>
+  <p>Pillar 64 is an independent project built on Ubuntu, Kubuntu and KDE Plasma. Those names belong to their owners. Microsoft, Windows, Word, Excel and Office are trademarks of Microsoft. Pillar 64 is not affiliated with or endorsed by Microsoft, Canonical, Kubuntu or KDE.</p>
+</div></footer>
+<script src="site.js"></script>
+</body></html>
