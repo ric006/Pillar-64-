@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pillar 64 FAQ</title><meta name="description" content="Pillar 64: a calm desktop with its own apps. A New Foundation."><link rel="icon" href="logo.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap"><link rel="stylesheet" href="style.css"></head><body>
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="index.html"><img src="logo.svg" alt="" width="36" height="36"><span>Pillar 64</span></a>
+  <nav class="main" aria-label="Main"><a href="index.html">Home</a><a href="apps.html">Apps</a><a href="install.html">Install</a><a href="fonts.html">Microsoft fonts</a><a href="faq.html" aria-current="page">FAQ</a><a class="cta" href="download.html">Download</a></nav>
+</div></header>
+<main>
+
+<section><div class="wrap">
+  <p class="eyebrow">Questions</p>
+  <h1>FAQ</h1>
+  <p class="lede" style="margin-top:16px">Straight answers about what Pillar is, what it leaves out, and what does not work yet.</p>
+
+  <h2 style="margin-top:44px">The basics</h2>
+  <div style="margin-top:20px">
+    <details><summary>What is Pillar 64?</summary><div><p>A Linux desktop with a Windows 11-style layout and its own set of apps. It is built on Kubuntu 26.04 and KDE Plasma 6, running on Wayland.</p></div></details>
+    <details><summary>Why "64"?</summary><div><p>The name is Pillar 64 to keep it clearly separate from other projects called Pillar. It is the 64-bit system.</p></div></details>
+    <details><summary>Is it Windows?</summary><div><p>No. It looks and behaves in a way Windows users will recognise, but it runs on Linux. It does not run Windows programs by itself.</p></div></details>
+    <details><summary>Can I install Steam or other programs?</summary><div><p>Yes. Steam is not preinstalled so that people who do not want it are not carrying it. Download Valve's .deb installer and double-click it. Pillar Package Installer takes it from there. You can also use Pillar Software.</p></div></details>
+  </div>
+
+  <h2 style="margin-top:44px">Privacy and updates</h2>
+  <div style="margin-top:20px">
+    <details><summary>Does Pillar collect data?</summary><div><p>Pillar ships with no telemetry and no advertising components. It does not send usage data anywhere.</p></div></details>
+    <details><summary>Does it update itself?</summary><div><p>No. Automatic update checks are off. Nothing installs unless you start it. From a terminal, the usual way is <code>sudo apt update</code> followed by <code>sudo apt upgrade</code>.</p></div></details>
+    <details><summary>So what does Pillar download on its own?</summary><div><p>One thing: the Microsoft fonts package, once, the first time the installed system is online. See <a href='fonts.html'>Microsoft fonts</a> for how it works and how to turn it off. The system integrity check can list the new font files afterwards, which is expected.</p></div></details>
+    <details><summary>Is Snap included?</summary><div><p>No. Snap packages are removed from Pillar.</p></div></details>
+  </div>
+
+  <h2 style="margin-top:44px">System integrity check</h2>
+  <div style="margin-top:20px">
+    <details><summary>What is the Pillar system integrity check?</summary><div><p>Each time the installed system starts, Pillar checks that its important system files are the same as when they were installed, and shows the result on the start-up screen. It does not run when you try Pillar from the USB drive. The first start after installation sets the starting point.</p></div></details>
+    <details><summary>Why did it report changes after my first restart?</summary><div><p>If the computer was online, Pillar downloaded the Microsoft fonts after that starting point was set. The next check sees the new font files and lists them. This is expected and harmless. See <a href='fonts.html'>Microsoft fonts</a>.</p></div></details>
+    <details><summary>What if it lists something that is not a font?</summary><div><p>Then it is worth a look. Read the full result with <code>cat /var/log/pillar-integrity.log</code>, and do not ignore files you do not recognise.</p></div></details>
+  </div>
+
+  <h2 style="margin-top:44px">Office files and fonts</h2>
+  <div style="margin-top:20px">
+    <details><summary>Will my Word and Excel files open?</summary><div><p>Yes. Pillar Word opens and saves .docx, and Pillar Excel Sheet opens .xlsx, .xlsm, .xls, .csv and .ods. Very complex documents with unusual features may not look identical.</p></div></details>
+    <details><summary>Why does Word show different fonts at first?</summary><div><p>The real Microsoft fonts arrive after your first restart with internet. Until then Pillar uses look-alike fonts with the same sizes, so layouts stay the same. <a href='fonts.html'>More</a></p></div></details>
+    <details><summary>Where is Calibri?</summary><div><p>Microsoft does not offer Calibri for free download, so Pillar cannot install it. The look-alike font Carlito is used instead, and it matches Calibri's spacing.</p></div></details>
+  </div>
+
+  <h2 id="limits" style="margin-top:44px">What does not work yet</h2>
+  <p style="margin-top:14px">This is the first public test build. These are the known gaps.</p>
+  <ul class="plain" style="margin-top:14px">
+    <li>Tested in VirtualBox only. It has not been tried on many real computers yet.</li>
+    <li>Pillar Excel Sheet has no charts or pivot tables, and does not read .xlsb files.</li>
+    <li>Pillar PDF cannot change the original text inside a PDF. Markup, forms and page tools work.</li>
+    <li>Pillar Disks cannot move or shrink partitions yet.</li>
+    <li>Pillar USB Creator does not support persistence on the USB drive.</li>
+    <li>There is no presentation app yet.</li>
+    <li>The Start button can show a standard icon instead of the Pillar logo. <a href="#start-icon">There is a two-minute fix below.</a></li>
+    <li>Video can look choppy in a virtual machine. That comes from the virtual machine, not Pillar.</li>
+  </ul>
+
+  <h2 id="fixes" style="margin-top:44px">Known problems and fixes</h2>
+  <div style="margin-top:20px">
+    <details id="start-icon"><summary>The Start button shows the wrong icon</summary><div><p>In version 1.0 the Start button on the taskbar can show a standard KDE icon instead of the Pillar logo, when the account you created during setup is not called <strong>pillar</strong>. It is a cosmetic problem only. The Windows key and the Start menu still work.</p><p>To fix it, open a terminal, paste these two lines, and press Enter:</p><div class="cmd"><code>sed -i &quot;s#/home/pillar/#$HOME/#g; /^localPath=/d&quot; ~/.config/plasma-org.kde.plasma.desktop-appletsrc</code><button class="copy" type="button" data-copy="sed -i &quot;s#/home/pillar/#$HOME/#g; /^localPath=/d&quot; ~/.config/plasma-org.kde.plasma.desktop-appletsrc">Copy</button></div><div class="cmd"><code>sed -i &#x27;s/^Icon=.*/Icon=pillar-logo/&#x27; ~/.local/share/applications/pillar-start.desktop</code><button class="copy" type="button" data-copy="sed -i &#x27;s/^Icon=.*/Icon=pillar-logo/&#x27; ~/.local/share/applications/pillar-start.desktop">Copy</button></div><p>Then restart the taskbar with this line. The taskbar disappears for a couple of seconds and comes back:</p><div class="cmd"><code>kquitapp6 plasmashell; (plasmashell --replace &gt;/dev/null 2&gt;&amp;1 &amp;)</code><button class="copy" type="button" data-copy="kquitapp6 plasmashell; (plasmashell --replace &gt;/dev/null 2&gt;&amp;1 &amp;)">Copy</button></div><p>If the old icon is still there, log out and back in once. This will be fixed in the next version of Pillar 64.</p></div></details>
+  </div>
+
+  <h2 style="margin-top:44px">Getting it</h2>
+  <div style="margin-top:20px">
+    <details><summary>How big is the download?</summary><div><p>3.9 GB. Use a USB drive of 8 GB or larger.</p></div></details>
+    <details><summary>Is it safe to install on my main computer?</summary><div><p>Not yet recommended. It is a first test build. Try it in VirtualBox or on a spare computer, and back up your files before installing on a real machine.</p></div></details>
+  </div>
+  <div class="btns" style="margin-top:34px"><a class="btn primary" data-download href="download.html">Go to the download page</a></div>
+</div></section>
+
+</main>
+<footer><div class="wrap">
+  <div class="links"><a href="index.html">Home</a><a href="apps.html">Apps</a><a href="install.html">Install</a><a href="fonts.html">Microsoft fonts</a><a href="faq.html">FAQ</a><a href="download.html">Download</a><a data-repo href="#">Project on GitHub</a></div>
+  <p><strong>Pillar 64 1.0</strong>. A New Foundation.</p>
+  <p>Pillar 64 is an independent project built on Ubuntu, Kubuntu and KDE Plasma. Those names belong to their owners. Microsoft, Windows, Word, Excel and Office are trademarks of Microsoft. Pillar 64 is not affiliated with or endorsed by Microsoft, Canonical, Kubuntu or KDE.</p>
+</div></footer>
+<script src="site.js"></script>
+</body></html>
